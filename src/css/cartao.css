@@ -56,6 +56,10 @@
 	overflow: auto;
 }
 
+.ajuda.destaca {
+	transform: scale(1.2) rotate(25deg);
+}
+
 @media (min-width: 560px){
 
 	.cartao {

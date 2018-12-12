@@ -9,7 +9,11 @@
 
         if (textarea.value.trim()) {
             
-            criarCartaoInsereMural(textarea.value.trim());
+            const cartao = { 
+                conteudo: textarea.value.trim() 
+            }
+            
+            criarCartaoInsereMural(cartao);
 
             this.reset();
             textarea.focus();
