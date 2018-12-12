@@ -25,9 +25,11 @@
 	transition: height .1s linear;
 }
 
+/* 
 .formNovoCartao-conteudo:focus {
 	height: 7em
-}
+} 
+*/
 
 .formNovoCartao-salvar {
 	font-size: 1em;
