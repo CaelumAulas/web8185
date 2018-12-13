@@ -1,3 +1,4 @@
+'use strict'
 ;(function(){
 
     const cartoes = document.querySelectorAll('.cartao');

@@ -1,3 +1,4 @@
+'use strict'
 ;(function(){
     
     const formulario = document.querySelector('.formNovoCartao');
@@ -10,7 +11,8 @@
         if (textarea.value.trim()) {
             
             const cartao = { 
-                conteudo: textarea.value.trim() 
+                conteudo: textarea.value.trim(),
+                cor: '#EBEF40'
             }
             
             criarCartaoInsereMural(cartao);

@@ -1,3 +1,4 @@
+'use strict'
 ;(function(){
 
     const btnAjuda = document.querySelector('#btnAjuda');

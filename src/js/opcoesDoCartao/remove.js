@@ -1,3 +1,4 @@
+'use strict'
 //IIFE - immediately invoked function expression
 ;(function(){
 

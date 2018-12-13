@@ -1,19 +1,15 @@
+'use strict'
 ;(function(){
-
-    'use strict'
 
     let numeroCartao = 1;
 
     const criarCartaoInsereMural = function (dadosCartao) {
-        const mural = document.querySelector('.mural');
-        const cartao = document.createElement('article');
+        const mural = document.querySelector('.mural'),
+              cartao = document.createElement('article');
 
         cartao.id = 'cartao_' + numeroCartao;
         cartao.classList.add('cartao');
         cartao.tabIndex = 0;
-
-        if (dadosCartao.cor) 
-            cartao.style.backgroundColor = dadosCartao.cor;
 
         if(dadosCartao.ajuda)
             cartao.classList.add('ajuda')
@@ -24,7 +20,7 @@
                 <svg><use xlink:href="#iconeRemover"></use></svg>
             </button>
 
-            <input type="radio" name="corDoCartao${numeroCartao}" value="#EBEF40" id="corPadrão-cartao${numeroCartao}" class="opcoesDoCartao-radioTipo" checked>
+            <input type="radio" name="corDoCartao${numeroCartao}" value="#EBEF40" id="corPadrão-cartao${numeroCartao}" class="opcoesDoCartao-radioTipo">
             <label for="corPadrão-cartao${numeroCartao}" class="opcoesDoCartao-tipo opcoesDoCartao-opcao" style="color: #EBEF40;" tabindex="0">
                 Padrão
             </label>
@@ -71,7 +67,6 @@
             if (mudaCor && (event.code == 'Enter' || event.code == 'Space' || event.code == 'NumpadEnter')) {
 
                 //this.style.backgroundColor = event.target.style.color;
-
                 event.target.click();
 
             }
@@ -90,6 +85,12 @@
 
         mural.insertAdjacentElement('afterbegin', cartao)
 
+        const cartaoColorido = cartao.querySelector(`[value="${dadosCartao.cor}"]`);
+
+        cartaoColorido
+            ? cartaoColorido.click()
+            : cartao.style.backgroundColor = dadosCartao.cor;
+        
         numeroCartao++
     }
 

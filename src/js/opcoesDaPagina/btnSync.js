@@ -1,3 +1,4 @@
+'use strict'
 ;(function(){
     
     const btnSync = document.querySelector('#btnSync');
@@ -16,7 +17,6 @@
                 conteudo: cartao.querySelector('.cartao-conteudo').textContent,
                 cor: cartao.querySelector('.opcoesDoCartao-radioTipo:checked').value
             })
-
         }
 
         const dados = {
@@ -46,7 +46,6 @@
         });
 
         conexao.addEventListener('error', function () {
-
             mensagem({
                 conteudo: `Deu ruim, tente mais tarde 👍`
             })
@@ -54,7 +53,7 @@
             btnSync.classList.remove('botaoSync--esperando');
             btnSync.classList.add('botaoSync--deuRuim');
 
-            throw('Erro! Tem alguma info errada na sua request')
+            throw('Erro! Tem alguma info errada na sua request');
 
         })
 
@@ -69,8 +68,5 @@
             throw ('Timeout! ⏱')
             
         })
-        
-
     })
-    
 })()

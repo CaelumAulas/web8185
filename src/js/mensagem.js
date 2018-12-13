@@ -1,3 +1,5 @@
+'use strict'
+
 const mensagem = function(mensagem){
 
     const mural = document.querySelector('.mural');
