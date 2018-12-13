@@ -2,6 +2,7 @@
 	line-height: 0;
 	border-radius: 50%;
 	color: white;
+	outline: none;
 }
 
 .botaoSync-icone {
@@ -22,6 +23,7 @@
 
 .botaoSync--esperando {
 	animation: rodaRodaJequiti .5s linear infinite;
+	box-shadow: 0 0 1px 3px white;
 }
 
 .botaoSync--sincronizado {
