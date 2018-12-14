@@ -276,7 +276,7 @@ const mensagem = function(mensagem){
         fetch('https://ceep.herokuapp.com/cartoes/instrucoes')
         .then(response => response.json())
         .then(body => exibeAjudas(body.instrucoes))
-        
+        .catch( erro => {throw(erro)})
 
         /*
         const conexaoApi = new XMLHttpRequest();
@@ -293,8 +293,8 @@ const mensagem = function(mensagem){
             
 
         }); //fim load
-
         */
+        
 
     }); //fim click
 
@@ -349,6 +349,37 @@ btn.addEventListener('click', mudaTexto);
             cartoes: listaObjCartao
         }
 
+        const salvar = function(url, dados) {
+
+            return fetch(url, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        cache: 'no-cache',
+                        credentials: 'omit',
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        body: dados
+                    })
+                    
+        }
+
+        salvar('https://ceep.herokuapp.com/cartoes/salvar/', dados)
+        .then(response => response.json())
+        .then(resposta => {
+
+            console.log(resposta)
+            
+            mensagem({
+                conteudo: `${resposta.quantidade} cartão(ões) salvos com sucesso para o usuário ${resposta.usuario} 🎉`
+            })
+
+            btnSync.classList.remove('botaoSync--esperando');
+            btnSync.classList.add('botaoSync--sincronizado');
+        })
+
+
+        /*
         const conexao = new XMLHttpRequest();
 
         conexao.open('POST', 'https://ceep.herokuapp.com/cartoes/salvar/');
@@ -393,6 +424,8 @@ btn.addEventListener('click', mudaTexto);
             throw ('Timeout! ⏱')
             
         })
+
+        */
     })
 })()
 'use strict';

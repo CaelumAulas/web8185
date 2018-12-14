@@ -24,6 +24,34 @@
             cartoes: listaObjCartao
         }
 
+        const salvar = function(url, dados) {
+
+            return fetch(url, {
+                        method: 'POST',
+                        mode: 'navigate',
+                        cache: 'no-cache',
+                        credentials: 'omit',
+                        headers: {
+                            "Content-Type": "application/json;"
+                        },
+                        body: dados
+                    }).then(response => response.json())
+                    
+        }
+
+        salvar('https://ceep.herokuapp.com/cartoes/salvar/', dados)
+        .then(resposta => {
+            
+            mensagem({
+                conteudo: `${resposta.quantidade} cartão(ões) salvos com sucesso para o usuário ${resposta.usuario} 🎉`
+            })
+
+            btnSync.classList.remove('botaoSync--esperando');
+            btnSync.classList.add('botaoSync--sincronizado');
+        })
+
+
+        /*
         const conexao = new XMLHttpRequest();
 
         conexao.open('POST', 'https://ceep.herokuapp.com/cartoes/salvar/');
@@ -68,5 +96,7 @@
             throw ('Timeout! ⏱')
             
         })
+
+        */
     })
 })()

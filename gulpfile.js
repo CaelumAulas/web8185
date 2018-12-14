@@ -6,9 +6,9 @@ const uglify = require('gulp-uglify');
 const plumber = require('gulp-plumber');
 const htmlmin = require('gulp-htmlmin');
 const cleanCSS = require('gulp-clean-css');
+const watch = require('gulp-watch');
 
-function defaultTask(cb) {
-
+gulp.task('prod', function(cb){
     gulp.src('src/*.html')
         .pipe(plumber())
         .pipe(
@@ -21,7 +21,7 @@ function defaultTask(cb) {
     gulp.src('src/css/**')
         .pipe(
             concat('ceep.css')
-        )    
+        )
         .pipe(
             cleanCSS()
         )
@@ -33,7 +33,7 @@ function defaultTask(cb) {
         .pipe(
             gulp.dest('dist/assets/img')
         )
-    
+
     gulp.src('src/js/**/*.js')
         .pipe(
             babel({
@@ -48,9 +48,8 @@ function defaultTask(cb) {
         )
         .pipe(gulp.dest('dist/assets/js'))
 
-
     cb();
-}
+})
 
 gulp.task('dev', function (cb) {
 
@@ -73,5 +72,20 @@ gulp.task('dev', function (cb) {
 
     cb();
 })
+
+gulp.task('watch', function(cb){
+    watch(
+        'src/**', ['dev']
+    )
+
+    watch(
+        'src/**', ['prod']
+    )
+})
+
+function defaultTask(cb) {
+    
+    cb();
+}
 
 exports.default = defaultTask;

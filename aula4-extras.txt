@@ -1,15 +1,14 @@
 Aula 4 extras
 Busca,
-
 Gulp
 
 Fetch, Promisses
 https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch
 
-
 fetch('https://ceep.herokuapp.com/cartoes/instrucoes')
         .then(response => response.json())
         .then(body => exibeAjudas(body.instrucoes))
+        
 PWA
 https://medium.com/tableless/como-criar-seu-primeiro-progressive-web-app-do-zero-a7e6ca5fb21e
 
@@ -24,5 +23,4 @@ https://developer.mozilla.org/en-US/docs/Web/API/Storage/LocalStorage
 https://nolanlawson.com/2015/09/29/indexeddb-websql-localstorage-what-blocks-the-dom/
 
 Class
-
 

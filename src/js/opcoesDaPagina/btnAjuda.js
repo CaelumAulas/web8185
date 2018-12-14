@@ -66,7 +66,7 @@
         fetch('https://ceep.herokuapp.com/cartoes/instrucoes')
         .then(response => response.json())
         .then(body => exibeAjudas(body.instrucoes))
-        
+        .catch( erro => {throw(erro)})
 
         /*
         const conexaoApi = new XMLHttpRequest();
@@ -83,8 +83,8 @@
             
 
         }); //fim load
-
         */
+        
 
     }); //fim click
 
