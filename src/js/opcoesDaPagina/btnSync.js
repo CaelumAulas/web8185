@@ -28,19 +28,20 @@
 
             return fetch(url, {
                         method: 'POST',
-                        mode: 'no-cors',
                         cache: 'no-cache',
-                        credentials: 'omit',
                         headers: {
                             "Content-Type": "application/json"
                         },
-                        body: dados
-                    }).then(response => response.json())
+                        body: JSON.stringify(dados)
+                    })
+                    .then(response => response.json())
                     
         }
 
         salvar('https://ceep.herokuapp.com/cartoes/salvar/', dados)
         .then(resposta => {
+
+            console.log(resposta);
             
             mensagem({
                 conteudo: `${resposta.quantidade} cartão(ões) salvos com sucesso para o usuário ${resposta.usuario} 🎉`
