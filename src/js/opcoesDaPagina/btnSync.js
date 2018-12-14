@@ -28,7 +28,7 @@
 
             return fetch(url, {
                         method: 'POST',
-                        mode: 'navigate',
+                        mode: 'no-cors',
                         cache: 'no-cache',
                         credentials: 'omit',
                         headers: {
