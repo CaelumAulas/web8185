@@ -32,7 +32,7 @@
                         cache: 'no-cache',
                         credentials: 'omit',
                         headers: {
-                            "Content-Type": "application/json;"
+                            "Content-Type": "application/json"
                         },
                         body: dados
                     }).then(response => response.json())
