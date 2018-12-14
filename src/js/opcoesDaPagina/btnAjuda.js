@@ -31,19 +31,44 @@
         }
     ];
 
-    //exemplo objeto javascript
-    /*
-    const escola = {
-        nome: 'UFT',
-        endereco: 'asdasd',
-        numero: 2323,
-        ensina: function(){
-            return this.nome
+    const exibeAjudas =  function(listaAjudas){
+
+        const ajudas = document.querySelectorAll('.mural .cartao.ajuda')
+
+        if (ajudas.length) {
+
+            //se eu quiser apagar
+            // for (const ajuda of ajudas) {
+            //     ajuda.querySelector('.opcoesDoCartao-remove').click();
+            // }
+
+            for (const ajuda of ajudas) {
+                ajuda.classList.add('destaca')
+            }
+
+            setTimeout(() => {
+                for (const ajuda of ajudas) {
+                    ajuda.classList.remove('destaca')
+                }
+            }, 1000);
+
+        } else {
+            for (const ajuda of listaAjudas) {
+                ajuda.ajuda = true;
+                criarCartaoInsereMural(ajuda);
+            }
+
         }
-    }*/
+    }
 
     btnAjuda.addEventListener(`click`, function(){
 
+        fetch('https://ceep.herokuapp.com/cartoes/instrucoes')
+        .then(response => response.json())
+        .then(body => exibeAjudas(body.instrucoes))
+        
+
+        /*
         const conexaoApi = new XMLHttpRequest();
 
         conexaoApi.open('GET', 'https://ceep.herokuapp.com/cartoes/instrucoes');
@@ -54,37 +79,15 @@
 
         conexaoApi.addEventListener('load', function(){
            
-            listaAjudas = this.response.instrucoes;
-
-            const ajudas = document.querySelectorAll('.mural .cartao.ajuda')
-    
-            if(ajudas.length){
-                
-                //se eu quiser apagar
-                // for (const ajuda of ajudas) {
-                //     ajuda.querySelector('.opcoesDoCartao-remove').click();
-                // }
-    
-                for (const ajuda of ajudas) {
-                    ajuda.classList.add('destaca')
-                }
-    
-                setTimeout(() => {
-                    for (const ajuda of ajudas) {
-                        ajuda.classList.remove('destaca')
-                    }   
-                }, 1000);
-                
-            } else {
-                for (const ajuda of listaAjudas) {
-                    ajuda.ajuda = true;
-                    criarCartaoInsereMural(ajuda);
-                }
-
-            }
+            exibeAjudas(conexaoApi.response.instrucoes)
+            
 
         }); //fim load
 
+        */
+
     }); //fim click
+
+    
 
 })()
