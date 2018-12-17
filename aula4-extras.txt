@@ -1,26 +1,40 @@
 Aula 4 extras
-Busca,
+Busca
+
 Gulp
+        https://gulpjs.com/docs/en/getting-started/quick-start
 
-Fetch, Promisses
-https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch
+Fetch, 
+Promisses
+        https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch
 
-fetch('https://ceep.herokuapp.com/cartoes/instrucoes')
-        .then(response => response.json())
+        fetch('https://ceep.herokuapp.com/cartoes/instrucoes')
+                .then(response => response.json())
         .then(body => exibeAjudas(body.instrucoes))
         
 PWA
-https://medium.com/tableless/como-criar-seu-primeiro-progressive-web-app-do-zero-a7e6ca5fb21e
+        https://medium.com/tableless/como-criar-seu-primeiro-progressive-web-app-do-zero-a7e6ca5fb21e
 
-camera, bateria, conexao, geolocation
-https://developer.mozilla.org/pt-BR/docs/Using_geolocation
+Camera, bateria, conexao, geolocation
+
+        window.navigator.connection
+
+        window.navigator.getBattery().then(batery => batery.level)
+
+        https://developer.mozilla.org/pt-BR/docs/Web/Guide/API/Camera
+        https://developers.google.com/web/fundamentals/media/capturing-images/
+
+        https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API
+        https://developer.mozilla.org/pt-BR/docs/Using_geolocation
+        https://developer.mozilla.org/pt-BR/docs/Using_geolocation#Solicitando_permiss%C3%A3o
 
 IndexDB/Localstorage
-https://softwareengineering.stackexchange.com/questions/219953/how-is-localstorage-different-from-indexeddb
-https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
-https://developer.mozilla.org/en-US/docs/Web/API/Storage/LocalStorage
 
-https://nolanlawson.com/2015/09/29/indexeddb-websql-localstorage-what-blocks-the-dom/
+        https://softwareengineering.stackexchange.com/questions/219953/how-is-localstorage-different-from-indexeddb
+        https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+        https://developer.mozilla.org/en-US/docs/Web/API/Storage/LocalStorage
+
+        https://nolanlawson.com/2015/09/29/indexeddb-websql-localstorage-what-blocks-the-dom/
 
 Class
-
+        https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Classes

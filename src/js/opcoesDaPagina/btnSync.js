@@ -35,14 +35,11 @@
                         body: JSON.stringify(dados)
                     })
                     .then(response => response.json())
-                    
         }
 
         salvar('https://ceep.herokuapp.com/cartoes/salvar/', dados)
         .then(resposta => {
 
-            console.log(resposta);
-            
             mensagem({
                 conteudo: `${resposta.quantidade} cartão(ões) salvos com sucesso para o usuário ${resposta.usuario} 🎉`
             })

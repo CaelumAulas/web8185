@@ -170,7 +170,7 @@ const mensagem = function(mensagem){
 }
 'use strict'
 ;(function(){
-    
+
     const dados = {
         usuario: 'vanessa'
     }
@@ -208,97 +208,6 @@ const mensagem = function(mensagem){
     */
 
 })()
-'use strict'
-;(function(){
-
-    const cartoes = document.querySelectorAll('.cartao');
-
-    for(let cartao of cartoes) {
-        
-        cartao.addEventListener('focusin', function(){
-            this.classList.add('cartao--focado')
-        })
-
-        cartao.addEventListener('focusout', function(){
-            this.classList.remove('cartao--focado')
-        })
-
-        cartao.addEventListener('change', function(event){
-
-            const mudaCor = event.target.classList.contains('opcoesDoCartao-radioTipo')
-            
-            if(mudaCor){
-                this.style.backgroundColor = event.target.value;
-            }
-        })
-
-        cartao.addEventListener('keyup', function(event){
-
-            const mudaCor = event.target.classList.contains('opcoesDoCartao-tipo')
-            
-            if (mudaCor && (event.code == 'Enter' || event.code == 'Space' || event.code == 'NumpadEnter')){
-                
-                //this.style.backgroundColor = event.target.style.color;
-
-                event.target.click();
-
-            }
-            
-        })
-
-        cartao.addEventListener('click', function (event) {
-            if (event.target.classList.contains('opcoesDoCartao-remove')){
-                cartao.classList.add('cartao--some');
-
-                cartao.addEventListener('transitionend', function(){
-                    this.remove();
-                })
-            }
-        })
-        
-    }
-
-})()
-'use strict'
-//IIFE - immediately invoked function expression
-;(function(){
-
-    const btnList = document.querySelectorAll('.opcoesDoCartao-remove');
-
-    for (let i = 0; btnList.length > i; i++) {
-
-        const btn = btnList[i];
-
-        btn.addEventListener('click', function () {
-
-            const cartao = this.parentElement.parentElement;
-
-            cartao.classList.add('cartao--some');
-
-            cartao.addEventListener('transitionend', function () {
-                this.remove();
-            });
-        });
-    }
-
-    // btnList.forEach(function(btn){
-
-    //     btn.addEventListener('click', function(){
-
-    //         const cartao = this.parentElement.parentElement;
-
-    //         cartao.classList.add('cartao--some');
-
-    //         cartao.addEventListener('transitionend', function(){
-    //             this.remove();
-    //         });
-
-    //     });
-
-    // });
-    
-})()
-
 'use strict'
 ;(function(){
 
@@ -451,14 +360,11 @@ btn.addEventListener('click', mudaTexto);
                         body: JSON.stringify(dados)
                     })
                     .then(response => response.json())
-                    
         }
 
         salvar('https://ceep.herokuapp.com/cartoes/salvar/', dados)
         .then(resposta => {
 
-            console.log(resposta);
-            
             mensagem({
                 conteudo: `${resposta.quantidade} cartão(ões) salvos com sucesso para o usuário ${resposta.usuario} 🎉`
             })
@@ -538,4 +444,94 @@ btn.addEventListener('click', mudaTexto);
 
   })
 
+})()
+'use strict'
+;(function(){
+
+    const cartoes = document.querySelectorAll('.cartao');
+
+    for(let cartao of cartoes) {
+        
+        cartao.addEventListener('focusin', function(){
+            this.classList.add('cartao--focado')
+        })
+
+        cartao.addEventListener('focusout', function(){
+            this.classList.remove('cartao--focado')
+        })
+
+        cartao.addEventListener('change', function(event){
+
+            const mudaCor = event.target.classList.contains('opcoesDoCartao-radioTipo')
+            
+            if(mudaCor){
+                this.style.backgroundColor = event.target.value;
+            }
+        })
+
+        cartao.addEventListener('keyup', function(event){
+
+            const mudaCor = event.target.classList.contains('opcoesDoCartao-tipo')
+            
+            if (mudaCor && (event.code == 'Enter' || event.code == 'Space' || event.code == 'NumpadEnter')){
+                
+                //this.style.backgroundColor = event.target.style.color;
+
+                event.target.click();
+
+            }
+            
+        })
+
+        cartao.addEventListener('click', function (event) {
+            if (event.target.classList.contains('opcoesDoCartao-remove')){
+                cartao.classList.add('cartao--some');
+
+                cartao.addEventListener('transitionend', function(){
+                    this.remove();
+                })
+            }
+        })
+        
+    }
+
+})()
+'use strict'
+//IIFE - immediately invoked function expression
+;(function(){
+
+    const btnList = document.querySelectorAll('.opcoesDoCartao-remove');
+
+    for (let i = 0; btnList.length > i; i++) {
+
+        const btn = btnList[i];
+
+        btn.addEventListener('click', function () {
+
+            const cartao = this.parentElement.parentElement;
+
+            cartao.classList.add('cartao--some');
+
+            cartao.addEventListener('transitionend', function () {
+                this.remove();
+            });
+        });
+    }
+
+    // btnList.forEach(function(btn){
+
+    //     btn.addEventListener('click', function(){
+
+    //         const cartao = this.parentElement.parentElement;
+
+    //         cartao.classList.add('cartao--some');
+
+    //         cartao.addEventListener('transitionend', function(){
+    //             this.remove();
+    //         });
+
+    //     });
+
+    // });
+    
 })()

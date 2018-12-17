@@ -1,24 +1,29 @@
-const gulp = require('gulp');
+const { src, dest, watch, series } = require('gulp');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
-//o pumbler serve para tratar os erros de pipe
-const plumber = require('gulp-plumber');
+const plumber = require('gulp-plumber'); //o pumbler serve para tratar os erros de pipe
 const htmlmin = require('gulp-htmlmin');
 const cleanCSS = require('gulp-clean-css');
-const watch = require('gulp-watch');
 
-gulp.task('prod', function(cb){
-    gulp.src('src/*.html')
-        .pipe(plumber())
+function htmlProd () {
+
+    return src('src/*.html')
+        .pipe(
+            plumber()
+        )
         .pipe(
             htmlmin({ collapseWhitespace: true })
         )
         .pipe(
-            gulp.dest('dist/')
-        )
+            dest('dist/')
+        );
 
-    gulp.src('src/css/**')
+}
+
+function cssProd() {
+
+    return src('src/css/**')
         .pipe(
             concat('ceep.css')
         )
@@ -26,15 +31,23 @@ gulp.task('prod', function(cb){
             cleanCSS()
         )
         .pipe(
-            gulp.dest('dist/assets/css')
-        )
+            dest('dist/assets/css')
+        );
 
-    gulp.src('src/assets/img/**')
+}
+
+function imgProd() {
+
+    return src('src/assets/img/**')
         .pipe(
-            gulp.dest('dist/assets/img')
-        )
+            dest('dist/assets/img')
+        );
 
-    gulp.src('src/js/**/*.js')
+}
+
+function jsProd(){
+
+    return src('src/js/**/*.js')
         .pipe(
             babel({
                 presets: ['@babel/env']
@@ -46,46 +59,39 @@ gulp.task('prod', function(cb){
         .pipe(
             uglify()
         )
-        .pipe(gulp.dest('dist/assets/js'))
+        .pipe(
+            dest('dist/assets/js')
+        );
 
-    cb();
-})
+}
 
-gulp.task('dev', function (cb) {
+function cssDev() {
 
-    gulp.src('src/css/**')
+    return src('src/css/**')
         .pipe(
             concat('ceep.css')
         )
         .pipe(
-            gulp.dest('src/assets/css')
-        )
+            dest('src/assets/css')
+        );
 
+}
 
-    gulp.src('src/js/**/*.js')
+function jsDev(){
+
+    return src('src/js/**/*.js')
         .pipe(
             concat('ceep.js')
         )
         .pipe(
-            gulp.dest('src/assets/js')
-        )
+        dest('src/assets/js')
+        );
 
-    cb();
-})
-
-gulp.task('watch', function(cb){
-    watch(
-        'src/**', ['dev']
-    )
-
-    watch(
-        'src/**', ['prod']
-    )
-})
-
-function defaultTask(cb) {
-    
-    cb();
 }
 
-exports.default = defaultTask;
+watch('src/js', series(jsDev, jsProd));
+watch('src/css', series(cssDev, cssProd));
+watch('src/*.html', series(htmlProd));
+watch('src/assets/img', series(imgProd));
+
+exports.default = series(cssDev, jsDev, htmlProd, cssProd, jsProd, imgProd);
